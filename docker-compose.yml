@@ -1,19 +1,8 @@
-version: '3.7'
+version: '3.8'
 
 services:
-  backend:
-    container_name: backend
-    build: .
-    image: fastapi-sqlalchemy:latest
-    restart: always
-    env_file:
-      - .env
-    network_mode: host
-    ports:
-      - 8005:8000
-
-  postgres:
-    image: postgres:15
+  db:
+    image: postgres:latest
     container_name: postgres
     restart: always
     network_mode: host
@@ -25,6 +14,17 @@ services:
       - POSTGRES_PASSWORD=${DB_PASS}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+  backend:
+    container_name: backend
+    build: .
+    command: bash -c "alembic revision --autogenerate && alembic upgrade head"
+    env_file:
+      - .env
+    ports:
+      - 8005:8000
+    depends_on:
+      - db
+    restart: always
 
 volumes:
   postgres_data:
