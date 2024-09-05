@@ -1,6 +1,6 @@
 # DB
-DB_HOST=localhost
+DB_HOST=IP
 DB_NAME=db_name
 DB_USER=db_user
 DB_PASS=db_pass
-DB_PORT=5435
+DB_PORT=5432

@@ -7,7 +7,7 @@ services:
     restart: always
     network_mode: host
     ports:
-      - 5435:5432
+      - 5432:5432
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
@@ -21,7 +21,7 @@ services:
     env_file:
       - .env
     ports:
-      - 8005:8000
+      - 8000:8000
     depends_on:
       - db
     restart: always
