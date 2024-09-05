@@ -10,4 +10,4 @@ COPY . /code
 
 RUN alembic upgrade head
 
-CMD ["fast", "main.py"]
+CMD ["fastapi", "dev", "app.py"]
