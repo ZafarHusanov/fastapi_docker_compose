@@ -4,7 +4,6 @@ services:
   db:
     image: postgres:latest
     restart: always
-    network_mode: host
     ports:
       - 5432:5432
     environment:
@@ -15,7 +14,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
   backend:
     build: .
-    command: bash -c "alembic revision --autogenerate && alembic upgrade head"
+    #command: bash -c "alembic revision --autogenerate && alembic upgrade head"
     env_file:
       - .env
     ports:
